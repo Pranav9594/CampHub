@@ -1,13 +1,19 @@
-# CampHub
+# College Storage
 
-A clean and responsive **college file storage web application** built with **Flask, SQLite, HTML, CSS, and JavaScript**.
+A clean, responsive **college file storage web application** built with **Flask, Supabase, HTML, CSS, and JavaScript**.
 
-College Storage allows students to upload, organize, search, download, and manage academic files from a simple dashboard.
+College Storage provides students with a simple platform to upload, organize, search, download, and manage their academic files in one place.
 
 ## ✨ Features
 
 * 📁 Upload academic files
-* 📄 Supports **PDF, DOCX, PPT, PPTX, and image files**
+* 📄 Supports:
+
+  * PDF
+  * DOCX
+  * PPT
+  * PPTX
+  * Images
 * 🎓 Organize files by:
 
   * Semester
@@ -17,19 +23,48 @@ College Storage allows students to upload, organize, search, download, and manag
 * ⬇️ Download files
 * 🗑️ Delete files
 * 📊 Responsive dashboard with file metadata
-* 💾 SQLite database for file information
-* 📱 Responsive design for desktop and mobile
+* ☁️ Supabase integration for cloud-based data and file storage
+* 📱 Responsive interface for desktop and mobile
+* ⚡ Flask backend for handling application logic
 
 ## 🛠️ Tech Stack
 
-| Technology | Purpose                       |
-| ---------- | ----------------------------- |
-| Python     | Backend programming           |
-| Flask      | Web framework                 |
-| SQLite     | Database                      |
-| HTML       | Page structure                |
-| CSS        | Styling and responsive design |
-| JavaScript | Frontend interactions         |
+| Technology | Purpose                        |
+| ---------- | ------------------------------ |
+| Python     | Backend programming            |
+| Flask      | Web framework and API handling |
+| Supabase   | Cloud database and storage     |
+| PostgreSQL | Database used by Supabase      |
+| HTML       | Page structure                 |
+| CSS        | Styling and responsive design  |
+| JavaScript | Frontend interactions          |
+
+## 🏗️ Architecture
+
+```text
+                    College Storage
+                           │
+                           ▼
+                    ┌─────────────┐
+                    │   Frontend  │
+                    │ HTML / CSS  │
+                    │ JavaScript  │
+                    └──────┬──────┘
+                           │
+                           ▼
+                    ┌─────────────┐
+                    │    Flask    │
+                    │   Backend   │
+                    └──────┬──────┘
+                           │
+                  ┌────────┴────────┐
+                  ▼                 ▼
+           ┌─────────────┐   ┌─────────────┐
+           │  Supabase   │   │  Supabase   │
+           │  Database   │   │   Storage   │
+           │ PostgreSQL  │   │    Files    │
+           └─────────────┘   └─────────────┘
+```
 
 ## 📂 Project Structure
 
@@ -38,7 +73,7 @@ college-storage/
 │
 ├── app.py
 ├── requirements.txt
-├── college_storage.db
+│
 ├── uploads/
 │
 ├── static/
@@ -52,18 +87,18 @@ college-storage/
     └── index.html
 ```
 
-> `college_storage.db` and the `uploads/` folder are created automatically when the application starts.
+> The exact project structure may vary depending on your Supabase configuration and deployment setup.
 
 ## 🚀 Getting Started
 
-### 1. Clone the repository
+### 1. Clone the Repository
 
 ```bash
 git clone https://github.com/your-username/college-storage.git
 cd college-storage
 ```
 
-### 2. Create a virtual environment
+### 2. Create a Virtual Environment
 
 **Windows:**
 
@@ -79,66 +114,126 @@ python3 -m venv venv
 source venv/bin/activate
 ```
 
-### 3. Install dependencies
+### 3. Install Dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 4. Run the application
+### 4. Configure Supabase
+
+Create a project on Supabase and configure the required database and storage bucket.
+
+Add your Supabase credentials to your environment variables.
+
+Example:
+
+```env
+SUPABASE_URL=your_supabase_url
+SUPABASE_KEY=your_supabase_key
+```
+
+> Never commit your Supabase keys or `.env` file to GitHub.
+
+Add `.env` to `.gitignore`:
+
+```text
+.env
+venv/
+__pycache__/
+```
+
+### 5. Run the Application
 
 ```bash
 python app.py
 ```
 
-### 5. Open in your browser
+### 6. Open in Your Browser
 
 ```text
 http://127.0.0.1:5000
 ```
 
-## 💾 File Storage
+## ☁️ Supabase Integration
 
-Uploaded files are stored inside:
+Supabase is used to provide cloud-based storage and database functionality.
 
-```text
-uploads/
+### Database
+
+File metadata can be stored in a Supabase PostgreSQL database, including information such as:
+
+* File name
+* File path
+* Semester
+* Subject
+* Category
+* Upload date
+
+### Storage
+
+Uploaded academic files can be stored in a Supabase Storage bucket.
+
+This allows files to be managed independently from the Flask application's local filesystem.
+
+## 🔍 File Management
+
+Users can:
+
+1. Upload files
+2. Select semester, subject, and category
+3. Search uploaded files
+4. View file information
+5. Download files
+6. Delete files
+
+## 📊 Dashboard
+
+The dashboard provides a simple overview of stored academic materials using responsive cards and file metadata.
+
+The interface is designed to make it easy for students to quickly find and manage their study materials.
+
+## 🔐 Security
+
+The application should keep sensitive configuration values outside the source code.
+
+Example:
+
+```env
+SUPABASE_URL=your_supabase_url
+SUPABASE_KEY=your_supabase_key
 ```
 
-File information such as the filename, semester, subject, category, and upload details is stored in the SQLite database.
+Do not upload `.env` files or private API keys to GitHub.
 
-## 🗄️ Database
-
-The application automatically creates:
-
-```text
-college_storage.db
-```
-
-with a `files` table when the application starts.
-
-To completely reset the application, you can delete the database file and restart the server.
+For production, configure appropriate **Supabase Row Level Security (RLS)** and Storage policies.
 
 ## 🔮 Future Improvements
 
-* User authentication
-* Student-specific storage
-* Admin dashboard
-* File preview
-* Cloud storage integration
-* File sharing
-* Storage usage tracking
-* Drag-and-drop uploads
-* Advanced filtering and sorting
+* 🔐 User authentication
+* 👤 Student-specific file storage
+* 👨‍💼 Admin dashboard
+* 👁️ File preview
+* 🔗 File sharing
+* 📤 Drag-and-drop uploads
+* 🔎 Advanced search and filtering
+* 📈 Storage usage tracking
+* 🏷️ File tagging
+* ☁️ Improved cloud storage management
+* 📱 Progressive Web App support
 
 ## 📌 Project Status
 
-**Currently in development.**
+**🚧 Currently in development**
 
-College Storage is designed as a simple academic file management system for students to keep their study materials organized in one place.
+College Storage is designed as an academic file management platform that helps students keep notes, presentations, documents, and other study materials organized in one place.
+
+## 🎯 Purpose
+
+The goal of College Storage is to provide a simple and centralized solution for managing college-related files instead of keeping academic documents scattered across different folders and devices.
 
 ## 👨‍💻 Author
 
 **Your Name**
 
-Built as a college project using Flask and SQLite.
+Built with ❤️ using **Flask, Supabase, PostgreSQL, HTML, CSS, and JavaScript**.
