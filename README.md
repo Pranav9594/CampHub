@@ -1,4 +1,4 @@
-# College Storage
+# CampHub
 
 A clean, responsive **college file storage web application** built with **Flask, Supabase, HTML, CSS, and JavaScript**.
 
