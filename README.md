@@ -1,8 +1,8 @@
 # CampHub
 
-A clean, responsive **college file storage web application** built with **Flask, Supabase, HTML, CSS, and JavaScript**.
+A clean and responsive **college file storage and management web application** built with **Flask, Supabase, HTML, CSS, and JavaScript**.
 
-College Storage provides students with a simple platform to upload, organize, search, download, and manage their academic files in one place.
+CampHub provides students with a simple platform to upload, organize, search, download, and manage their academic files in one place.
 
 ## ✨ Features
 
@@ -23,26 +23,26 @@ College Storage provides students with a simple platform to upload, organize, se
 * ⬇️ Download files
 * 🗑️ Delete files
 * 📊 Responsive dashboard with file metadata
-* ☁️ Supabase integration for cloud-based data and file storage
+* ☁️ Supabase integration for cloud database and file storage
 * 📱 Responsive interface for desktop and mobile
-* ⚡ Flask backend for handling application logic
+* ⚡ Flask backend for application logic
 
 ## 🛠️ Tech Stack
 
-| Technology | Purpose                        |
-| ---------- | ------------------------------ |
-| Python     | Backend programming            |
-| Flask      | Web framework and API handling |
-| Supabase   | Cloud database and storage     |
-| PostgreSQL | Database used by Supabase      |
-| HTML       | Page structure                 |
-| CSS        | Styling and responsive design  |
-| JavaScript | Frontend interactions          |
+| Technology | Purpose                         |
+| ---------- | ------------------------------- |
+| Python     | Backend programming             |
+| Flask      | Web framework and API handling  |
+| Supabase   | Cloud database and file storage |
+| PostgreSQL | Database used by Supabase       |
+| HTML       | Page structure                  |
+| CSS        | Styling and responsive design   |
+| JavaScript | Frontend interactions           |
 
 ## 🏗️ Architecture
 
 ```text
-                    College Storage
+                         CampHub
                            │
                            ▼
                     ┌─────────────┐
@@ -69,7 +69,7 @@ College Storage provides students with a simple platform to upload, organize, se
 ## 📂 Project Structure
 
 ```text
-college-storage/
+camphub/
 │
 ├── app.py
 ├── requirements.txt
@@ -87,15 +87,15 @@ college-storage/
     └── index.html
 ```
 
-> The exact project structure may vary depending on your Supabase configuration and deployment setup.
+> The exact project structure may vary depending on the Supabase configuration and deployment setup.
 
 ## 🚀 Getting Started
 
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/college-storage.git
-cd college-storage
+git clone https://github.com/your-username/camphub.git
+cd camphub
 ```
 
 ### 2. Create a Virtual Environment
@@ -124,9 +124,7 @@ pip install -r requirements.txt
 
 Create a project on Supabase and configure the required database and storage bucket.
 
-Add your Supabase credentials to your environment variables.
-
-Example:
+Add your Supabase credentials to your environment variables:
 
 ```env
 SUPABASE_URL=your_supabase_url
@@ -135,7 +133,7 @@ SUPABASE_KEY=your_supabase_key
 
 > Never commit your Supabase keys or `.env` file to GitHub.
 
-Add `.env` to `.gitignore`:
+Add the following to `.gitignore`:
 
 ```text
 .env
@@ -157,11 +155,11 @@ http://127.0.0.1:5000
 
 ## ☁️ Supabase Integration
 
-Supabase is used to provide cloud-based storage and database functionality.
+CampHub uses **Supabase** for cloud-based database and storage functionality.
 
 ### Database
 
-File metadata can be stored in a Supabase PostgreSQL database, including information such as:
+File metadata can be stored in the Supabase PostgreSQL database, including:
 
 * File name
 * File path
@@ -172,41 +170,35 @@ File metadata can be stored in a Supabase PostgreSQL database, including informa
 
 ### Storage
 
-Uploaded academic files can be stored in a Supabase Storage bucket.
+Academic files can be stored in a Supabase Storage bucket, allowing files to be managed in the cloud rather than relying only on local storage.
 
-This allows files to be managed independently from the Flask application's local filesystem.
-
-## 🔍 File Management
+## 📂 File Management
 
 Users can:
 
-1. Upload files
+1. Upload academic files
 2. Select semester, subject, and category
-3. Search uploaded files
+3. Search files
 4. View file information
 5. Download files
 6. Delete files
 
 ## 📊 Dashboard
 
-The dashboard provides a simple overview of stored academic materials using responsive cards and file metadata.
-
-The interface is designed to make it easy for students to quickly find and manage their study materials.
+CampHub provides a responsive dashboard with organized file cards and metadata, making it easier for students to quickly find and manage their academic resources.
 
 ## 🔐 Security
 
-The application should keep sensitive configuration values outside the source code.
+Sensitive configuration values should never be hard-coded into the application.
 
-Example:
+Use environment variables:
 
 ```env
 SUPABASE_URL=your_supabase_url
 SUPABASE_KEY=your_supabase_key
 ```
 
-Do not upload `.env` files or private API keys to GitHub.
-
-For production, configure appropriate **Supabase Row Level Security (RLS)** and Storage policies.
+For production deployments, configure appropriate **Supabase Row Level Security (RLS)** and Storage policies.
 
 ## 🔮 Future Improvements
 
@@ -219,21 +211,15 @@ For production, configure appropriate **Supabase Row Level Security (RLS)** and 
 * 🔎 Advanced search and filtering
 * 📈 Storage usage tracking
 * 🏷️ File tagging
-* ☁️ Improved cloud storage management
+* ☁️ Enhanced cloud storage management
 * 📱 Progressive Web App support
 
 ## 📌 Project Status
 
 **🚧 Currently in development**
 
-College Storage is designed as an academic file management platform that helps students keep notes, presentations, documents, and other study materials organized in one place.
+CampHub is designed as an academic file management platform that helps students keep notes, presentations, documents, and other study materials organized in one place.
 
 ## 🎯 Purpose
 
-The goal of College Storage is to provide a simple and centralized solution for managing college-related files instead of keeping academic documents scattered across different folders and devices.
-
-## 👨‍💻 Author
-
-**Your Name**
-
-Built with ❤️ using **Flask, Supabase, PostgreSQL, HTML, CSS, and JavaScript**.
+The goal of CampHub is to provide students with a centralized platform for managing college-related files instead of keeping academic documents scattered across different folders and devices.
