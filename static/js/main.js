@@ -4,6 +4,19 @@ document.addEventListener("DOMContentLoaded", () => {
     const modal = document.getElementById("pin-modal");
     const pinInput = document.getElementById("pin-input");
     const pinError = document.getElementById("pin-error");
+    const pinConfirm = document.getElementById("pin-confirm");
+    const pinCancel = document.getElementById("pin-cancel");
+
+    if (!modal || !pinInput || !pinError || !pinConfirm || !pinCancel) {
+        document.querySelectorAll(".flash").forEach((flashMessage) => {
+            window.setTimeout(() => {
+                flashMessage.style.transition = "opacity 0.35s ease, transform 0.35s ease";
+                flashMessage.style.opacity = "0";
+                flashMessage.style.transform = "translateY(-4px)";
+            }, 3800);
+        });
+        return;
+    }
 
     document.querySelectorAll("[data-confirm-delete='true']").forEach((form) => {
         form.addEventListener("submit", (event) => {
@@ -18,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    document.getElementById("pin-confirm").addEventListener("click", () => {
+    pinConfirm.addEventListener("click", () => {
         if (pinInput.value.trim() === "6") {
             modal.style.display = "none";
             modal.classList.add("hidden");
@@ -33,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    document.getElementById("pin-cancel").addEventListener("click", () => {
+    pinCancel.addEventListener("click", () => {
         modal.style.display = "none";
         modal.classList.add("hidden");
         pendingDeleteForm = null;
