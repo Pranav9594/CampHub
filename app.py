@@ -152,6 +152,13 @@ def index():
                            subject_options=SUBJECT_OPTIONS, lab_options=LAB_OPTIONS)
 
 
+# Vercel may forward requests to /api/index or /api/index.py — handle them and redirect to root
+@app.route('/api/index')
+@app.route('/api/index.py')
+def vercel_forward():
+    return redirect(url_for('index'))
+
+
 @app.route("/dashboard", methods=["GET"])
 def dashboard():
     search_term = request.args.get("search", "").strip()
