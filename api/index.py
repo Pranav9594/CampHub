@@ -27,12 +27,18 @@ def vercel_health():
 def strip_prefix_middleware(wsgi_app):
     def middleware(environ, start_response):
         path = environ.get("PATH_INFO", "") or ""
+        rewritten = path
         for prefix in ("/api/index.py", "/api/index"):
             if path.startswith(prefix):
                 # remove the prefix; ensure at least '/'
-                new_path = path[len(prefix):] or "/"
-                environ["PATH_INFO"] = new_path
+                rewritten = path[len(prefix):] or "/"
+                environ["PATH_INFO"] = rewritten
                 break
+        # Debug log to help diagnose Vercel routing issues (visible in function logs)
+        try:
+            print(f"[VERCEL DEBUG] PATH_INFO before={path} after={environ.get('PATH_INFO')}", flush=True)
+        except Exception:
+            pass
         return wsgi_app(environ, start_response)
     return middleware
 
