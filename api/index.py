@@ -20,6 +20,21 @@ def vercel_health():
         "is_vercel": bool(os.environ.get("VERCEL")) or ("VERCEL_ENV" in os.environ)
     })
 
-# Export the WSGI callable expected by Vercel
-application = app
+# Wrap the Flask app with a small middleware that removes the Vercel rewrite
+# prefix (e.g. /api/index or /api/index.py) from PATH_INFO so routes like '/'
+# and '/dashboard' continue to work when Vercel forwards requests.
+
+def strip_prefix_middleware(wsgi_app):
+    def middleware(environ, start_response):
+        path = environ.get("PATH_INFO", "") or ""
+        for prefix in ("/api/index.py", "/api/index"):
+            if path.startswith(prefix):
+                # remove the prefix; ensure at least '/'
+                new_path = path[len(prefix):] or "/"
+                environ["PATH_INFO"] = new_path
+                break
+        return wsgi_app(environ, start_response)
+    return middleware
+
+application = strip_prefix_middleware(app.wsgi_app)
 
