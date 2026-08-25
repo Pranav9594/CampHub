@@ -4,6 +4,3 @@ uploads/
 __pycache__/
 *.pyc
 .env
-
-template_preview.html
-check_templates.py

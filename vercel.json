@@ -10,7 +10,7 @@
     },
     {
       "source": "/(.*)",
-      "destination": "/api/hello.py"
+      "destination": "/api/index"
     }
   ]
 }
