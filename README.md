@@ -223,3 +223,4 @@ CampHub is designed as an academic file management platform that helps students 
 ## 🎯 Purpose
 
 The goal of CampHub is to provide students with a centralized platform for managing college-related files instead of keeping academic documents scattered across different folders and devices.
+,
